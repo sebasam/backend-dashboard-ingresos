@@ -13,7 +13,9 @@ router.post('/register', async (req: Request, res: Response) => {
     const user = await authService.register(payload);
     return res.status(201).json(user);
   } catch (err: any) {
-    return res.status(400).json({ message: err.message || 'Error' });
+    return res.status(400).json({ 
+      message: err.message || 'Error' 
+    });
   }
 });
 
@@ -23,7 +25,9 @@ router.post('/login', async (req: Request, res: Response) => {
     const token = await authService.login(payload.email, payload.password);
     return res.json(token);
   } catch (err: any) {
-    return res.status(400).json({ message: err.message || 'Error' });
+    return res.status(400).json({ 
+      message: err.message || 'Error' 
+    });
   }
 });
 

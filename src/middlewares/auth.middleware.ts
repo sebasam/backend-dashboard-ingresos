@@ -14,7 +14,9 @@ export interface AuthRequest extends Request {
 
 export function authMiddleware(req: AuthRequest, res: Response, next: NextFunction) {
     const auth = req.headers.authorization;
-    if (!auth) return res.status(401).json({ message: 'No token provided' });
+    if (!auth) return res.status(401).json({ 
+        message: 'No token provided' 
+    });
 
     const token = auth.replace(/^Bearer\s+/, '');
     try {
@@ -22,6 +24,8 @@ export function authMiddleware(req: AuthRequest, res: Response, next: NextFuncti
         req.user = payload;
         return next();
     } catch (err) {
-        return res.status(401).json({ message: 'Invalid token' });
+        return res.status(401).json({ 
+            message: 'Invalid token' 
+        });
     }
 }
